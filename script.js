@@ -38,3 +38,37 @@ toggle.addEventListener('click', () => {
         toggle.textContent = '☀️';
     }
 });
+// ANIMATION SCROLL
+const elements = document.querySelectorAll('.fade-in');
+function revealOnScroll() {
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100) el.classList.add('visible');
+  });
+}
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+// THEME SOMBRE/CLAIR
+const toggle = document.querySelector('.theme-toggle');
+toggle.addEventListener('click', () => {
+  if(document.documentElement.style.getPropertyValue('--bg') === '#111'){
+    document.documentElement.style.setProperty('--bg','#fff');
+    document.documentElement.style.setProperty('--text','#111');
+    document.documentElement.style.setProperty('--card','#eee');
+    toggle.textContent = '🌙';
+  }else{
+    document.documentElement.style.setProperty('--bg','#111');
+    document.documentElement.style.setProperty('--text','#eee');
+    document.documentElement.style.setProperty('--card','#1a1a1a');
+    toggle.textContent = '☀️';
+  }
+});
+
+// MENU MOBILE
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+});
+
