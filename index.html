@@ -3,178 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senpay - Accueil</title>
+    <title>Senpay – Découverte</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
-        <h1>Bienvenue sur Senpay</h1>
-        <p>Votre plateforme de services numériques.</p>
+        <h1>Senpay</h1>
+
+        <!-- Bouton thème -->
+        <button id="themeToggle">🌙 / ☀️</button>
+
+        <!-- Icône menu mobile -->
+        <button id="menuBtn" class="hamburger">
+            ☰
+        </button>
     </header>
 
-    <main>
-        <button onclick="afficherMessage()">Cliquez ici</button>
-        <p id="message"></p>
-    </main>
+    <!-- MENU -->
+    <nav class="menu" id="menu">
+        <a href="#">Accueil</a>
+        <a href="#">Découvertes</a>
+        <a href="#">Culture</a>
+        <a href="#">Gastronomie</a>
+        <a href="#">Contacts</a>
+    </nav>
+
+    <section class="hero">
+        <h2>Bienvenue sur Senpay</h2>
+        <p>Explore le Sénégal autrement. Culture, lieux, traditions et découvertes.</p>
+    </section>
+
+    <section class="cards">
+        <div class="card">
+            <h3>Sites Touristiques</h3>
+            <p>Découvrez les lieux emblématiques du Sénégal.</p>
+        </div>
+        <div class="card">
+            <h3>Gastronomie</h3>
+            <p>Un voyage culinaire unique.</p>
+        </div>
+        <div class="card">
+            <h3>Culture</h3>
+            <p>Traditions, arts, musiques et histoire.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Senpay – Tous droits réservés.</p>
+    </footer>
 
     <script src="script.js"></script>
-</body>
-</html>
-
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Senpay — Explorer</title>
-  <meta name="description" content="Senpay — plateforme de découverte. Explore contenus, galeries et articles." />
-  <link rel="icon" href="assets/logo.svg" />
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav-row">
-      <a class="brand" href="/">
-        <img src="assets/logo.svg" alt="Senpay" class="logo" />
-        <span class="brand-text">Senpay</span>
-      </a>
-
-      <nav class="nav">
-        <a href="#discover">Découvrir</a>
-        <a href="#gallery">Galerie</a>
-        <a href="#blog">Blog</a>
-        <a href="#about">À propos</a>
-        <a href="#contact" class="cta">Contact</a>
-      </nav>
-
-      <div class="controls">
-        <button id="themeToggle" aria-label="Basculer thème">☀️/🌙</button>
-        <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
-      </div>
-    </div>
-
-    <div id="mobileMenu" class="mobile-menu">
-      <a href="#discover">Découvrir</a>
-      <a href="#gallery">Galerie</a>
-      <a href="#blog">Blog</a>
-      <a href="#about">À propos</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-text">
-          <h1>Explore. Découvre. Inspire.</h1>
-          <p>Senpay — un espace de découverte moderne pour parcourir des contenus, galeries et idées. Thème sombre et clair, responsive et élégant.</p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#discover">Commencer</a>
-            <a class="btn ghost" href="#about">En savoir plus</a>
-          </div>
-        </div>
-        <figure class="hero-media">
-          <img src="assets/hero.jpg" alt="Visuel découverte" />
-        </figure>
-      </div>
-    </section>
-
-    <section id="discover" class="section container cards-section">
-      <h2>Découvrir</h2>
-      <p class="lead">Parcourez nos rubriques sélectionnées et trouvez l'inspiration.</p>
-
-      <div class="cards">
-        <article class="card">
-          <h3>Explorations locales</h3>
-          <p>Guides, itinéraires et lieux méconnus à découvrir près de chez toi.</p>
-          <a class="card-link" href="#">Voir</a>
-        </article>
-
-        <article class="card">
-          <h3>Projets créatifs</h3>
-          <p>Galeries, portfolios et workshops pour stimuler ta créativité.</p>
-          <a class="card-link" href="#">Voir</a>
-        </article>
-
-        <article class="card">
-          <h3>Découvertes tech</h3>
-          <p>Outils, mini-apps et ressources pour apprendre quelque chose de neuf.</p>
-          <a class="card-link" href="#">Voir</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="gallery" class="section container gallery-section">
-      <h2>Galerie</h2>
-      <div class="gallery-grid">
-        <img src="assets/hero.jpg" alt="thumb" />
-        <img src="assets/hero.jpg" alt="thumb" />
-        <img src="assets/hero.jpg" alt="thumb" />
-        <img src="assets/hero.jpg" alt="thumb" />
-      </div>
-    </section>
-
-    <section id="blog" class="section container blog-preview">
-      <h2>Derniers articles</h2>
-      <div class="post-row">
-        <article class="post">
-          <h3>Comment bien explorer</h3>
-          <p>Une courte introduction pour organiser ses découvertes et créer des collections.</p>
-          <a href="#" class="read-more">Lire</a>
-        </article>
-        <article class="post">
-          <h3>Créer des guides locaux</h3>
-          <p>Exemples simples pour construire un mini-guide avec HTML et images.</p>
-          <a href="#" class="read-more">Lire</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="about" class="section container about">
-      <h2>À propos</h2>
-      <p>Senpay est un projet de découverte — simple, élégant et pensé pour la navigation. Ce site est un prototype destiné à présenter des contenus et des idées.</p>
-    </section>
-
-    <section id="contact" class="section container contact">
-      <h2>Contact</h2>
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Formulaire simulé — configure un backend pour envoyer des messages.');">
-        <label>
-          <span>Ton nom</span>
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          <span>Email</span>
-          <input type="email" name="email" required />
-        </label>
-        <label>
-          <span>Message</span>
-          <textarea name="message" rows="4" required></textarea>
-        </label>
-        <div class="form-actions">
-          <button class="btn primary" type="submit">Envoyer</button>
-        </div>
-      </form>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <strong>Senpay</strong>
-        <p>Site de découverte — prototype.</p>
-      </div>
-      <div>
-        <nav>
-          <a href="#">Mentions</a>
-          <a href="#">CGU</a>
-        </nav>
-      </div>
-      <div>
-        <small>© Senpay — Tous droits réservés.</small>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
 </body>
 </html>
