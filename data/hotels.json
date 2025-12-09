@@ -1,0 +1,32 @@
+[
+  {
+    "nom": "Hôtel Terrou-Bi",
+    "ville": "Dakar",
+    "adresse": "Corniche Ouest, Dakar",
+    "telephone": "+221338399039"
+  },
+  {
+    "nom": "Hôtel Fleur de Lys",
+    "ville": "Dakar Almadies",
+    "adresse": "Route des Almadies",
+    "telephone": "+221338698687"
+  },
+  {
+    "nom": "Hôtel Le Virage",
+    "ville": "Yoff Virage",
+    "adresse": "Plage de Yoff Virage",
+    "telephone": "+221338207169"
+  },
+  {
+    "nom": "Hôtel Al Afifa",
+    "ville": "Plateau Dakar",
+    "adresse": "46 Rue Jules Ferry",
+    "telephone": "+221338899090"
+  },
+  {
+    "nom": "Radisson Blu Dakar",
+    "ville": "Corniche Ouest",
+    "adresse": "Route de la Corniche Ouest",
+    "telephone": "+221338693333"
+  }
+]
