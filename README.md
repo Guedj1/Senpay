@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-Ton contenu local
-=======
-Le contenu distant sur GitHub
->>>>>>> origin/main# Senpay
+# Senpay
 Vendre en automatisant vos tâches 
+Whatsapp business 

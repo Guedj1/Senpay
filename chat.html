@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Senpay</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Chat en direct</h1>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html">Contact</a>
+        <a href="paiement.html">Paiement</a>
+        <a href="chat.html" class="active">Chat</a>
+        <a href="discussion.html">Discussion</a>
+        <a href="galerie.html">Galerie</a>
+    </nav>
+</header>
+
+<section class="content-section">
+    <h2>Communiquez avec les autres membres</h2>
+    <div class="chat-container">
+        <div id="chat-messages" class="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Écrivez un message..." />
+        <button id="chat-send">Envoyer</button>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 - Senpay Chat</p>
+</footer>
+
+<script>
+const messagesDiv = document.getElementById("chat-messages");
+const input = document.getElementById("chat-input");
+const sendBtn = document.getElementById("chat-send");
+
+// Stockage simple en local (Termux / navigateur)
+let chatHistory = [];
+
+function renderMessages() {
+    messagesDiv.innerHTML = "";
+    chatHistory.forEach(msg => {
+        const p = document.createElement("p");
+        p.textContent = msg;
+        messagesDiv.appendChild(p);
+    });
+}
+
+sendBtn.addEventListener("click", () => {
+    if (input.value.trim() === "") return;
+    chatHistory.push("Vous: " + input.value);
+    renderMessages();
+    input.value = "";
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+});
+
+// Pour simuler les réponses (facultatif)
+setInterval(() => {
+    if (chatHistory.length && Math.random() < 0.05) {
+        chatHistory.push("Membre: Salut ! 👋");
+        renderMessages();
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+}, 5000);
+
+renderMessages();
+</script>
+
+</body>
+</html>

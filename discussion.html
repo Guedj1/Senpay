@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion - Senpay</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Espace Discussion</h1>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html">Contact</a>
+        <a href="paiement.html">Paiement</a>
+        <a href="chat.html">Chat</a>
+        <a href="discussion.html" class="active">Discussion</a>
+        <a href="galerie.html">Galerie</a>
+    </nav>
+</header>
+
+<section class="content-section">
+    <h2>Forum des membres</h2>
+    <p>Publiez vos messages et discutez avec la communauté.</p>
+
+    <div class="discussion-container">
+        <ul id="discussion-list"></ul>
+
+        <input type="text" id="discussion-input" placeholder="Écrivez un message..." />
+        <button id="discussion-send">Poster</button>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 - Senpay Discussion</p>
+</footer>
+
+<script>
+const discussionList = document.getElementById("discussion-list");
+const discussionInput = document.getElementById("discussion-input");
+const discussionSend = document.getElementById("discussion-send");
+
+// Stockage simple en local
+let discussions = JSON.parse(localStorage.getItem("discussions") || "[]");
+
+function renderDiscussion() {
+    discussionList.innerHTML = "";
+    discussions.forEach(msg => {
+        const li = document.createElement("li");
+        li.textContent = msg;
+        discussionList.appendChild(li);
+    });
+}
+
+discussionSend.addEventListener("click", () => {
+    if (discussionInput.value.trim() === "") return;
+    discussions.push("Membre: " + discussionInput.value);
+    localStorage.setItem("discussions", JSON.stringify(discussions));
+    renderDiscussion();
+    discussionInput.value = "";
+});
+
+renderDiscussion();
+</script>
+
+</body>
+</html>
