@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hôtels & Excursions Sénégal</title>
+  <style>
+    body{font-family:Inter,Arial;margin:0;background:#fafafa;color:#111}
+    header{background:#2a9d8f;color:white;padding:28px 20px;text-align:center}
+    nav a{color:white;margin:0 10px;text-decoration:none;font-weight:600}
+    .container{max-width:1000px;margin:auto;padding:20px}
+    h2{margin-top:40px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:white;padding:18px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.06);margin-bottom:20px}
+    button{background:#2a9d8f;color:white;border:none;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;margin-top:10px}
+    footer{text-align:center;margin:30px 0;color:#666}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hôtels & Excursions Sénégal</h1>
+    <nav>
+      <a href="#hotels">Hôtels</a>
+      <a href="#excursions">Excursions</a>
+      <a href="#guides">Guides</a>
+    </nav>
+  </header>  <div class="container"><section id="hotels">
+  <h2>Hôtels recommandés</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Royal Horizon Baobab</h3>
+      <p>Saly Portudal — Bord de mer, piscine, restaurant</p>
+      <button onclick="window.location.href='https://wa.me/221XXXXXXXXX?text=Bonjour%2C+je+voudrais+renseignements+pour+Royal+Horizon+Baobab.'">Contacter</button>
+    </div>
+    <div class="card">
+      <h3>Lamantin Beach Resort</h3>
+      <p>Somone — Vue océan, activités nautiques, spa</p>
+      <button onclick="window.location.href='https://wa.me/221XXXXXXXXX?text=Bonjour%2C+je+voudrais+renseignements+pour+Lamantin+Beach+Resort.'">Contacter</button>
+    </div>
+    <div class="card">
+      <h3>Le Warang</h3>
+      <p>Saly — Hôtel moderne, piscine, proche plage</p>
+      <button onclick="window.location.href='https://wa.me/221XXXXXXXXX?text=Bonjour%2C+je+voudrais+renseignements+pour+Le+Warang.'">Contacter</button>
+    </div>
+  </div>
+</section>
+
+<section id="excursions">
+  <h2>Excursions</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Île de Gorée</h3>
+      <p>Visite historique, maison des esclaves, artisanat local</p>
+      <button onclick="window.location.href='https://wa.me/221XXXXXXXXX?text=Bonjour%2C+je+voudrais+renseignements+pour+île+de+Gorée.'">Réserver</button>
+    </div>
+    <div class="
