@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agence IA + Chatbot pour tous les templates</title>
+  <style>
+    body{font-family:Inter,Arial;margin:0;background:#fafafa;color:#111}
+    header{background:#0069ff;color:white;padding:28px 20px;text-align:center}
+    nav a{color:white;margin:0 10px;text-decoration:none;font-weight:600}
+    .container{max-width:1000px;margin:auto;padding:20px}
+    h2{margin-top:40px}
+    .card{background:white;padding:18px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.06);margin-bottom:20px}
+    button{background:#0069ff;color:white;border:none;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;margin-top:10px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    footer{text-align:center;margin:30px 0;color:#666}
+    .chat-btn{position:fixed;right:18px;bottom:18px;background:#ff5722;border-radius:999px;padding:14px 18px;color:white;border:none;box-shadow:0 10px 30px rgba(255,60,60,.18);cursor:pointer}
+    .modal{position:fixed;right:18px;bottom:80px;width:360px;max-width:calc(100% - 32px);background:white;border-radius:12px;box-shadow:0 20px 50px rgba(10,10,30,.18);overflow:hidden;display:none;flex-direction:column}
+    .modal.active{display:flex}
+    .chat-header{background:#111827;color:white;padding:12px 14px}
+    .messages{padding:12px;min-height:180px;max-height:280px;overflow:auto}
+    .input-row{display:flex;padding:10px;gap:8px;border-top:1px solid #eee}
+    .input-row input{flex:1;padding:10px;border-radius:8px;border:1px solid #ddd}
+    .msg.user{text-align:right;color:#05295a;font-weight:600}
+    .msg.bot{text-align:left;color:#0b1220}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Agence IA + Chatbot</h1>
+    <nav>
+      <a href="#restaurant">Restaurant</a>
+      <a href="#taxi">Taxi</a>
+      <a href="#hotels">Hôtels & Excursions</a>
+    </nav>
+  </header>  <div class="container" id="restaurant">
+    <h2>Template Restaurant</h2>
+    <div class="card">
+      <p>Exemple: Nom du Restaurant, Menu, Réservation WhatsApp</p>
+    </div>
+  </div>  <div class="container" id="taxi">
+    <h2>Template Taxi</h2>
+    <div class="card">
+      <p>Réservation rapide, contact chauffeur, tarifs</p>
+    </div>
+  </div>  <div class="container" id="hotels">
+    <h2>Template Hôtels &
