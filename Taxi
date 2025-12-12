@@ -1,0 +1,78 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taxi — Réservation rapide</title>
+  <style>
+    body{font-family:Inter,Arial;margin:0;background:#f5f5f5;color:#111}
+    header{background:#1e88e5;color:white;padding:28px 20px;text-align:center}
+    nav a{color:white;margin:0 10px;text-decoration:none;font-weight:600}
+    .container{max-width:1000px;margin:auto;padding:20px}
+    h2{margin-top:40px}
+    .card{background:white;padding:18px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.06);margin-bottom:20px}
+    label{font-weight:600;margin-top:10px;display:block}
+    input, select{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-top:6px}
+    button{background:#1e88e5;color:white;border:none;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;margin-top:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    footer{text-align:center;margin:30px 0;color:#666}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Taxi Express Sénégal</h1>
+    <nav>
+      <a href="#chauffeur">Chauffeur</a>
+      <a href="#reservation">Réserver</a>
+      <a href="#tarifs">Tarifs</a>
+    </nav>
+  </header>  <div class="container"><section id="chauffeur">
+  <h2>Votre Chauffeur</h2>
+  <div class="card">
+    <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+      <img src="https://picsum.photos/200/200?driver" style="border-radius:12px;width:180px;height:180px;object-fit:cover">
+      <div>
+        <h3>Nom du chauffeur</h3>
+        <p>Disponible 24h/24 — Dakar & environs</p>
+        <p>Expérience : 8 ans</p>
+        <button onclick="window.location.href='https://wa.me/221XXXXXXXXX?text=Bonjour%2C+j%27aimerais+une+course.'">Contacter sur WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reservation">
+  <h2>Réserver une course</h2>
+  <div class="card">
+    <label>Point de départ</label>
+    <input id="depart" placeholder="Ex: Ouakam">
+
+    <label>Destination</label>
+    <input id="destination" placeholder="Ex: Plateau">
+
+    <label>Heure</label>
+    <input id="heure" type="time">
+
+    <button onclick="sendReservation()">Envoyer la réservation</button>
+  </div>
+</section>
+
+<section id="tarifs">
+  <h2>Tarifs indicatifs</h2>
+  <div class="grid">
+    <div class="card"><h3>Courte distance</h3><p>2 000 – 3 000 CFA</p></div>
+    <div class="card"><h3>Moyenne distance</h3><p>3 000 – 5 000 CFA</p></div>
+    <div class="card"><h3>Long trajet</h3><p>6 000 – 10 000 CFA</p></div>
+  </div>
+</section>
+
+  </div>  <footer>© Taxi Express Sénégal — Site généré</footer>  <script>
+    function sendReservation(){
+      const d = document.getElementById('depart').value;
+      const a = document.getElementById('destination').value;
+      const h = document.getElementById('heure').value;
+
+      const msg = encodeURIComponent(`Bonjour, je souhaite réserver une course :\nDépart : ${d}\nDestination : ${a}\nHeure : ${h}`);
+
+      window.location
