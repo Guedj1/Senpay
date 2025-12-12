@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restaurant — Menu & Réservation</title>
+  <style>
+    body{font-family:Inter,Arial;margin:0;background:#fafafa;color:#111}
+    header{background:#d62828;color:white;padding:28px 20px;text-align:center}
+    nav a{color:white;margin:0 10px;text-decoration:none;font-weight:600}
+    .container{max-width:1000px;margin:auto;padding:20px}
+    h2{margin-top:40px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:white;padding:16px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+    button{background:#d62828;color:white;border:none;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;margin-top:10px}
+    footer{text-align:center;margin:30px 0;color:#666}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Nom du Restaurant</h1>
+    <nav>
+      <a href="#menu">Menu</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#reservation">Réservation</a>
+    </nav>
+  </header>  <div class="container">
+    <section id="menu">
+      <h2>Menu</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Plat 1</h3>
+          <p>Description courte du plat.</p>
+          <strong>3 500 CFA</strong>
+        </div>
+        <div class="card">
+          <h3>Plat 2</h3>
+          <p>Description courte du plat.</p>
+          <strong>4 000 CFA</strong>
+        </div>
+        <div class="card">
+          <h3>Plat 3</h3>
+          <p>Description courte du plat.</p>
+          <strong>2 500 CFA</strong>
+        </div>
+      </div>
+    </section><section id="galerie">
+  <h2>Galerie</h2>
+  <div class="grid">
+    <div class="card"><img src="https://picsum.photos/400/250?food1" style="width:100%;border-radius:10px"></div>
+    <div class="card"><img src="https://picsum.photos/400/250?food2" style="width:100%;border-radius:10px"></div>
+    <div class="card"><img src="https://picsum.photos/400/250?food3" style="width:100%;border-radius:10px"></div>
+  </div>
+</section>
+
+<section id="reservation">
+  <h2>Réserver une table</h2>
+  <div class="card">
+    <p>Envoyez une réservation instantanée sur WhatsApp :</p>
+    <button onclick="window.location.href='https://wa.me/221XXXXXXXXX?text=Bonjour%2C+je+voudrais+réserver+une+table.'">Réserver maintenant</button>
+  </div>
+</section>
+
+  </div>  <footer>© Restaurant — Site généré</footer>
+</body>
+</html>
