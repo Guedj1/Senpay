@@ -1,0 +1,271 @@
+<!--
+FICHIER: index.html
+PROJET: Site d'Agence IA + Chatbot (préparé pour GitHub Pages)
+BUT: copier-coller dans un repo GitHub, activer GitHub Pages, et déployer.
+
+INSTRUCTIONS NANO-ÉTAPE PAR ÉTAPE (copier-coller dans Termux / terminal)
+-------------------------------------------------------------------
+1) Créer le repo GitHub
+   a) Sur GitHub -> New repository -> nom: mon-agence-ia
+   b) Ne cochez rien (no README needed) ou cochez README si vous préférez
+
+2) Sur ton téléphone / Termux, cloner le repo (remplace USER et REPO)
+   $ pkg install git -y
+   $ git clone https://github.com/USER/mon-agence-ia.git
+   $ cd mon-agence-ia
+
+3) Créer le fichier index.html
+   - Copie-colle le contenu de ce fichier (index.html) dans ton éditeur (nano index.html)
+   $ nano index.html   # puis coller tout le contenu et sauver (Ctrl+O, Entrée, Ctrl+X)
+
+4) Commit & push
+   $ git add index.html
+   $ git commit -m "Ajout site agence IA"
+   $ git push origin main
+
+5) Activer GitHub Pages
+   - Sur GitHub -> Settings -> Pages -> Branch: main (ou gh-pages) -> / (root) -> Save
+   - L'URL sera: https://USER.github.io/mon-agence-ia/ (attendre quelques secondes)
+
+6) Chatbot (option sans backend minimale) — options sûres:
+   OPTION A (Recommandée): Deployer une fonction serveur pour protéger ta clé OpenAI
+     - Utilise Render / Vercel / Netlify Functions / Render Free (gratuit) pour héberger une petite fonction POST /api/chat
+     - Met la clé OPENAI_API_KEY comme secret sur la plateforme
+     - Le frontend (ce site) appelle /api/chat (sur l'URL de la fonction).
+
+   OPTION B (Expérimental, DANGEREUX): Mettre clé côté client (NE PAS FAIRE EN PRODUC)
+     - Je fournis la partie front-end, mais tu dois créer la fonction serveur.
+
+7) Exemple rapide de fonction serveur (Node.js - Vercel / Netlify / Render)
+   - index.js (serverless):
+     const fetch = require('node-fetch');
+     module.exports = async (req, res) => {
+       const body = req.body;
+       const r = await fetch('https://api.openai.com/v1/chat/completions', {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json',
+           'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+         },
+         body: JSON.stringify({ model: 'gpt-4o-mini', messages: [{role:'user', content: body.message}], max_tokens:500 })
+       });
+       const j = await r.json();
+       res.json(j);
+     }
+   - Déployer et récupérer l'URL: https://mon-fonction.example.com/api/chat
+   - Mets l'URL dans la variable FRONTEND_CHAT_ENDPOINT ci-dessous.
+
+8) Personnaliser templates clients:
+   - Dupliquer la section <section id="template"> ... </section>
+   - Remplace images, texte, horaires, prix
+
+9) Livrer au client:
+   - Copier le repo -> remplacer contenus -> déployer sur une branche client (ex: client-resto/)
+   - Ou héberger sous un sous-domaine / dossier: https://USER.github.io/mon-agence-ia/clients/restaurant1/
+
+--><!doctype html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agence IA — Création site + Chatbot</title>
+  <meta name="description" content="Site d'agence IA — Site vitrine + Chatbot pour entreprises au Sénégal" />
+  <style>
+    /* Simple, propre et responsive — change les couleurs si tu veux */
+    :root{--accent:#0069ff;--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, Arial, sans-serif;margin:0;background:#f5f7fb;color:#0b1220}
+    header{background:linear-gradient(90deg,var(--accent),#00bfa6);color:white;padding:28px 20px}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:white;text-decoration:none;font-weight:600}
+    h1{margin:0 0 8px}
+    .hero{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+    .card{background:white;border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(10,10,20,.06)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    button.cta{background:var(--accent);color:white;border:none;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    section{padding:28px 0}
+    footer{padding:20px 0;text-align:center;color:var(--muted)}
+    .chat-btn{position:fixed;right:18px;bottom:18px;background:linear-gradient(180deg,#ff6b6b,#ff3d3d);border-radius:999px;padding:14px 18px;color:white;border:none;box-shadow:0 10px 30px rgba(255,60,60,.18);cursor:pointer}
+    .modal{position:fixed;right:18px;bottom:80px;width:360px;max-width:calc(100% - 32px);background:white;border-radius:12px;box-shadow:0 20px 50px rgba(10,10,30,.18);overflow:hidden;display:none;flex-direction:column}
+    .modal.active{display:flex}
+    .chat-header{background:#111827;color:white;padding:12px 14px}
+    .messages{padding:12px;min-height:180px;max-height:280px;overflow:auto}
+    .input-row{display:flex;padding:10px;gap:8px;border-top:1px solid #eee}
+    .input-row input{flex:1;padding:10px;border-radius:8px;border:1px solid #ddd}
+    .msg.user{text-align:right;color:#05295a;font-weight:600}
+    .msg.bot{text-align:left;color:#0b1220}
+    .small{font-size:13px;color:var(--muted)}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef4ff;color:var(--accent);font-weight:700}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div style="flex:1">
+          <span class="badge">Agence IA</span>
+        </div>
+        <div>
+          <a href="#services">Services</a>
+          <a href="#templates" style="margin-left:12px">Templates</a>
+          <a href="#contact" style="margin-left:12px">Contact</a>
+        </div>
+      </nav>
+      <div class="hero" style="margin-top:18px">
+        <div style="flex:1;min-width:240px">
+          <h1>Site + Chatbot IA pour entreprises au Sénégal</h1>
+          <p class="small">Création rapide sur GitHub Pages + chatbot IA + intégration WhatsApp pour réservations et support.</p>
+          <div style="margin-top:12px">
+            <button class="cta" onclick="openContact()">Demander un devis</button>
+            <button class="cta" style="margin-left:8px;background:#ffffff;color:var(--accent)" onclick="openChat()">Essayer le Chatbot</button>
+          </div>
+        </div>
+        <div style="width:360px">
+          <div class="card">
+            <h3>Pack standard</h3>
+            <p class="small">Site vitrine + Chatbot IA + Intégration WhatsApp</p>
+            <ul>
+              <li>Pages: Accueil, Services, Contact, Réservation</li>
+              <li>Installation en 48h</li>
+              <li>Prix conseillé: 25 000 CFA (exemple)</li>
+            </ul>
+            <div style="margin-top:8px"><button class="cta" onclick="openContact()">Vendre ce pack</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>  <main class="container"><section id="services">
+  <h2>Nos services</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Site vitrine</h3>
+      <p class="small">Responsive, SEO basique, sections prêtes pour vos menus / services.</p>
+    </div>
+    <div class="card">
+      <h3>Chatbot IA</h3>
+      <p class="small">Assistant client intégré sur site + export conversation WhatsApp.</p>
+    </div>
+    <div class="card">
+      <h3>Réservations</h3>
+      <p class="small">Formulaire simple pour taxis, hôtels, restaurants — notifications WhatsApp.</p>
+    </div>
+    <div class="card">
+      <h3>Maintenance</h3>
+      <p class="small">Mises à jour, sauvegarde, petit SEO et formation client.</p>
+    </div>
+  </div>
+</section>
+
+<section id="templates">
+  <h2>Templates rapides (à cloner)</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Restaurant</h3>
+      <p class="small">Menu, galerie, réservation table.</p>
+    </div>
+    <div class="card">
+      <h3>Taxi</h3>
+      <p class="small">Réservation voyage + contact conducteur via WhatsApp.</p>
+    </div>
+    <div class="card">
+      <h3>Hotel</h3>
+      <p class="small">Réservation chambre + disponibilité.</p>
+    </div>
+    <div class="card">
+      <h3>École</h3>
+      <p class="small">Page admission, contact, calendrier.</p>
+    </div>
+  </div>
+</section>
+
+<section id="chatbot">
+  <h2>Chatbot intégré</h2>
+  <div class="card">
+    <p class="small">Le bouton en bas à droite ouvre un chatbot. Ce chatbot envoie la requête à l'endpoint que tu fournis (voir variable FRONTEND_CHAT_ENDPOINT dans le script).</p>
+    <p class="small">IMPORTANT: pour la production, déployer une fonction serveur et stocker ta clé OpenAI dans les secrets (Render, Vercel ou Netlify).</p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card">
+    <p>WhatsApp: <a href="https://wa.me/221XXXXXXXXX">+221 XXXXXXXXX</a></p>
+    <p>Email: contact@monagence.com</p>
+  </div>
+</section>
+
+  </main><button class="chat-btn" onclick="openChat()">Chat IA</button>
+
+  <div id="chat-modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="chat-header">Assistant IA</div>
+    <div id="messages" class="messages"></div>
+    <div class="input-row">
+      <input id="chat-input" placeholder="Écris ta question..." />
+      <button id="send-btn" class="cta">Envoyer</button>
+    </div>
+  </div>  <footer>
+    <div class="container small">© Agence IA — Modèle prêt à déployer sur GitHub Pages</div>
+  </footer>  <script>
+    // CONFIG: remplace cette URL par ton endpoint serverless (recommandé)
+    const FRONTEND_CHAT_ENDPOINT = "https://example.com/api/chat"; // <-- CHANGE
+
+    function openChat(){
+      document.getElementById('chat-modal').classList.add('active');
+      document.getElementById('chat-modal').setAttribute('aria-hidden','false');
+      document.getElementById('chat-input').focus();
+    }
+    function openContact(){
+      window.location.href = '#contact';
+    }
+
+    const sendBtn = document.getElementById('send-btn');
+    const input = document.getElementById('chat-input');
+    const messages = document.getElementById('messages');
+
+    function appendMessage(who, text){
+      const el = document.createElement('div');
+      el.className = 'msg ' + (who === 'user' ? 'user' : 'bot');
+      el.innerText = text;
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    async function sendMessage(){
+      const text = input.value.trim();
+      if(!text) return;
+      appendMessage('user', text);
+      input.value='';
+      appendMessage('bot', '...');
+
+      try{
+        const r = await fetch(FRONTEND_CHAT_ENDPOINT, {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ message: text })
+        });
+        const j = await r.json();
+        // Adaptation: support common OpenAI shapes
+        let reply = '';
+        if(j.choices && j.choices[0] && j.choices[0].message) reply = j.choices[0].message.content;
+        else if(j.output && j.output[0] && j.output[0].content) reply = j.output[0].content;
+        else if(j.reply) reply = j.reply;
+        else reply = JSON.stringify(j).slice(0,1200);
+
+        // retire le dernier '...' et affiche la réponse
+        const last = messages.lastChild;
+        if(last && last.innerText === '...') last.innerText = reply;
+        else appendMessage('bot', reply);
+      }catch(err){
+        const last = messages.lastChild;
+        if(last && last.innerText === '...') last.innerText = 'Erreur: impossible de joindre le serveur.';
+        else appendMessage('bot','Erreur: impossible de joindre le serveur.');
+        console.error(err);
+      }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendMessage(); });
+
+  </script></body>
+</html>
